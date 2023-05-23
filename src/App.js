@@ -7,12 +7,10 @@ import { useState } from 'react';
 function App() {
   const [account,setAccount] = useState();;
   const connectWallet =async ()=>{
-const options = {
-  injectProvider: false,
-  communicationLayerPreference: 'webrtc',
-};
-
-const MMSDK = new MetaMaskSDK(options);
+const MMSDK = new MetaMaskSDK({
+  useDeeplink: false,
+  communicationLayerPreference: "socket",
+});;
 const ethereum = MMSDK.getProvider(); // You can also access via window.ethereum
   const accounts = await ethereum.request({ method: 'eth_requestAccounts', params: [] });
 
